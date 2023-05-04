@@ -1,0 +1,75 @@
+click       
+                        1 1           +            234              -         20          x                11            +                123           +               10            ÷                 5              -             +         *      50                =              212
+
+                              store last state             store last state
+                               _N1=N1,_P1=P1,
+                               _N2=N2,_P2=P2,
+                               _N3=N3
+                               store prev and curr keys
+
+set Exp var                         N3=11                        N3=234                  N3=20                           N3=11                         N3=123                      N3=10                              N3=5                                           N3=50            
+initialize                     N1= evaluateExp               N1= evaluateExp         Skip evaluateExp                 N1=evaluateExp               N1=evaluateExp               Skip evaluateExp                   N1=evaluateExp                                 N1=evaluateExp
+N1=0                            (0+0+11 = 11)                 (11+0+234=245)                                          (245-20x11=25)               (25+0+123=148)                                                  (148+10÷5=150)                                 (150+0-50=100)
+P1="+"                        & reset P1=+,N2=0               & reset P1=+,N2=0           if x/÷         if P2=x/÷   &reset P1=+,N2=0            &reset P1=+,N2=0                    if x/÷         if P2=x/÷   & reset P1=+,N2=0                                &reset P1=+,N2=0
+N2=0                           &    P2=+                        &   P2=-               P1=P2,P2=x          N2=N3         & P2=+                         & P2=+                    P1=P2, P2=÷         N2=N3          &  P2=-        P2=+                              P2= '='
+
+P2="+"                                                                                                                                         
+N3=0                                                        
+Exp = 
+N1 P1 N2 P2 N3
+
+                             update display = N1           update display = N1      update display = N1              update display = N1          update display = N1          update display = N1              update display = N1                            update display = N1     
+                                                                                                                                                                                                                                                                                    reset                             
+
+Set Display       update digit               update digit                 update digit                   update digit                  update digit                  update digit                     update digit                              update digit                      update digit
+                    add digit                add digit                     add digit                     add digit                     add digit                     add digit                        add digit                                  add digit                         add digit
+ 
+                           
+
+Remove digit
+Reset digit 0
+clear
+
+for every clicks;
+    if current click on a number,   
+        set the previous and current clicks
+        if Display is 0 or P2 is = or previous key is Operator
+            update digit to display = N1 ()
+            if P2 is =, 
+                reset All variables except Display
+        else previous key is a number & Display is not 0
+            add  digit to display ()
+            if P2=x/÷
+                set N2=N3 
+
+    if click on a backslash, 
+        set the previous and current clicks
+        if the prevous click is a number,
+            if the display number length is =1, then reset the display to zero 
+            if the display number length is >1, then remove the last digit from the display
+        if the prevous click is an operator, then do nothing (can be ignored)
+    
+    if click on a C, 
+        reset all + display
+         
+    if click on an operator or =
+        
+        if previous key is not operator or current key is equal     
+            set the previous and current clicks
+            store last state of all expression variables _N1=N1,_P1=P1,_N2=N2,_P2=P2,_N3=N3
+        else if current key and previous key are different type of operator (type1.include(key) <> type1.include(previouskey))
+            reset the current click only
+            restore the expression variable to the previous state N1=_N1, P1=_P1, N2=_N2, P2=_P2, N3=_N3
+        set the N3 = current display
+        if current key is plus or minus or equal 
+            evaluate expression
+            update display = N1
+            reset P1 and N2
+        else current key is type 2
+            P1=P2 
+        P2 = current key
+        
+
+
+
+

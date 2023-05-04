@@ -1,0 +1,153 @@
+* {
+    box-sizing: border-box;
+  }
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family:monospace;
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: 1.5px solid black;
+    cursor: pointer;
+    font-size: 50px;
+    font-family:monospace;
+    }
+
+.calculator {
+    display: grid;
+    grid-template-areas: 
+    "display    display     display     display"
+    "clear      clear       backspace   division"
+    "seven      eight       nine        multiplication"
+    "four       five        six         minus"
+    "one        two         three       plus"
+    "zero       zero        zero        equal";
+    text-align: center;
+    width: 400px;
+    height:590px;
+    align-items: center;
+    
+}
+
+    .display {
+        grid-area: display;
+        background-color: black;
+        color: white;
+        text-align: right;
+        font-size: 50px;
+        padding: 10px;
+        height:90px;
+        border: none;
+
+    }
+    .key {
+        background-color: lightgrey;
+    }
+    .key:hover {
+        background-color: rgba(211, 211, 211, 0.50);
+    }
+    .key:active {
+        background-color: rgba(128, 128, 128, 0.582);
+    }
+    .operator {
+        background-color: rgb(233, 161, 27);
+        color: white;
+        border-right: none;
+    }
+    .operator:hover {
+        background-color: rgba(233, 161, 27, 0.5);
+    }
+    .operator:active {
+        background-color: orange;
+    }
+    .operatorPressed {
+        background-color:white;
+        color: rgb(233, 161, 27);
+    }
+
+    .clear {
+        grid-area: clear;
+        border-left: none;
+    }
+
+    .backspace {
+        grid-area: backspace;
+    }
+
+    .division {
+        grid-area: division;
+    }
+
+    .seven {
+        grid-area: seven;
+        border-left: none;
+    }
+
+    .eight {
+        grid-area: eight;
+    }
+
+    .eight {
+        grid-area: eight;
+    }
+
+    .nine {
+        grid-area: nine;
+    }
+
+    .multiplication {
+        grid-area: multiplication;
+    }
+
+    .four {
+        grid-area: four;
+        border-left: none;
+    }
+
+    .five {
+        grid-area: five;
+    }
+
+    .six {
+        grid-area: six;
+    }
+
+    .minus {
+        grid-area: minus;
+    }
+
+    .one {
+        grid-area: one;
+        border-left: none;
+    }
+
+    .two {
+        grid-area: two;
+    }
+
+    .three {
+        grid-area: three;
+    }
+
+    .plus {
+        grid-area: plus;
+    }
+
+    .zero {
+        grid-area: zero;
+        border-bottom: none;
+        border-left: none;
+    }
+
+    .equal {
+        grid-area: equal;
+        border-bottom: none;
+        border-right: none;
+    }
