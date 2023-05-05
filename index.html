@@ -9,10 +9,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
-    <header>My Recent Projects</header>
-    <ul>
-        <li><a href="./calculator/index.html">My Calculator built in Apr 2023</a></li>
-        <li><a href="./wordmasters/index.html">My Word Master Game built in May 2023</a></li>
-    </ul>
+      <div class="container">
+        <header>
+          <div id="hamburger-menu" class="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <h1 class="header-title">My Recent Projects</h1>
+        </header>
+        <nav  id="nav">
+            <ul>
+                <li><a href="./calculator/index.html" target="content-iframe">Calculator</a></li>
+                <li><a href="./wordmasters/index.html" target="content-iframe">Word Master Game</a></li>
+            </ul>
+        </nav>
+        <main>
+            <iframe id="content-iframe" name="content-iframe" frameborder="0"></iframe>
+        </main>
+    </div>
+
+      <script src="./main.js"></script>
 </body>
 </html>
