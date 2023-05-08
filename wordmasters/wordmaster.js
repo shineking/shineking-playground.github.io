@@ -5,7 +5,7 @@ let wordOfTheDay;
     const response = await fetch('https://words.dev-apis.com/word-of-the-day');
     const data = await response.json();
     wordOfTheDay = data.word.toLowerCase();
-    toggleSpinner(false); // Show the spinner
+    toggleSpinner(false); // hide the spinner
   } catch (error) {
     console.error('Error fetching word of the day:', error);
   }
@@ -115,15 +115,6 @@ async function handleEnter(event, currentInput) {
 }
 
 async function isMatchingWordOfTheDay(word) {
-  // try {
-  //   const response = await fetch(`https://words.dev-apis.com/word-of-the-day`);
-  //   const data = await response.json();
-  //   return data.word.toLowerCase() === word.toLowerCase();
-  // } catch (error) {
-  //   console.error('Error fetching word of the day:', error);
-  //   return false;
-  // }
-
   //use the stored variable to fetch the API
   return wordOfTheDay === word.toLowerCase();
 }
@@ -148,7 +139,7 @@ async function validateWord(word) {
   }
 }
 
-function updateCellColors(inputCells, wordOfTheDay) {
+function updateCellColors1(inputCells, wordOfTheDay) {
   inputCells.forEach((input, index) => {
     const inputLetter = input.value.toLowerCase();
     const correctLetter = wordOfTheDay[index];
@@ -162,6 +153,40 @@ function updateCellColors(inputCells, wordOfTheDay) {
     }
   });
 }
+
+function updateCellColors(inputCells, wordOfTheDay) {
+  const wordOfTheDayArray = Array.from(wordOfTheDay);
+  const usedIndices = [];
+
+  inputCells.forEach((input, index) => {
+    const inputLetter = input.value.toLowerCase();
+    const correctLetter = wordOfTheDay[index];
+
+    if (inputLetter === correctLetter) {
+      input.style.backgroundColor = 'green';
+      usedIndices.push(index);
+    } else {
+      input.style.backgroundColor = 'gray';
+    }
+  });
+
+  inputCells.forEach((input, index) => {
+    const inputLetter = input.value.toLowerCase();
+
+    if (input.style.backgroundColor !== 'green') {
+      const unusedIndex = wordOfTheDayArray.findIndex(
+        (letter, i) => letter === inputLetter && !usedIndices.includes(i)
+      );
+
+      if (unusedIndex !== -1) {
+        input.style.backgroundColor = 'yellow';
+        usedIndices.push(unusedIndex);
+      }
+    }
+  });
+}
+
+
 
 function showWinMessage() {
   const title = document.querySelector('.title');
